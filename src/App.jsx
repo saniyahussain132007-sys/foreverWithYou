@@ -3,12 +3,13 @@ import { DataProvider } from './context/DataProvider';
 import SurpriseApp from './components/SurpriseApp';
 import AdminPanel from './components/AdminPanel';
 
-// Smart home page: if ?id= is present, show the surprise; otherwise show admin
+// Smart home page: ?id= (shared link) or ?preview=1 (local draft) → surprise; else admin
 function HomePage() {
   const [searchParams] = useSearchParams();
   const id = searchParams.get('id');
+  const preview = searchParams.get('preview');
 
-  if (id) {
+  if (id || preview) {
     return <SurpriseApp />;
   }
 

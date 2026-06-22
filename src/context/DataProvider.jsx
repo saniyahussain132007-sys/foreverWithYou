@@ -42,8 +42,9 @@ export function DataProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if we're in preview mode
-    const isPreview = window.location.pathname.endsWith('/preview');
+    // Preview mode: /preview route or ?preview=1 on home (works on Vercel without extra config)
+    const params = new URLSearchParams(window.location.search);
+    const isPreview = window.location.pathname.endsWith('/preview') || params.get('preview');
 
     if (isPreview) {
       // Preview mode: load from localStorage directly

@@ -202,7 +202,7 @@ export default function AdminPanel() {
             <button type="button" className="btn-main" onClick={saveData}>Save Changes 💾</button>
             <button type="button" className="btn-main btn-preview" onClick={() => {
               localStorage.setItem("romanticData", JSON.stringify(formData));
-              window.open(window.location.origin + "/preview", "_blank");
+              window.open(window.location.origin + "/?preview=1", "_blank");
             }}>Preview Website 👁️</button>
           </div>
 
