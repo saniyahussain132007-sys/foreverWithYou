@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Customization</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+
+
+    <style>
+        :root {
+            --primary: #ff75a0;
+            --secondary: #a389f4;
+            --bg: #fffafc;
+            --card-bg: #fff;
+            --text: #4a4a4a;
+            --border: #ffd6e8;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 117, 160, 0.1);
+        }
+
+        h1,
+        h2 {
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            border-bottom: 1px dashed var(--border);
+            padding-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--secondary);
+        }
+
+        input[type="text"],
+        input[type="url"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            box-sizing: border-box;
+            background: #fff;
+            transition: 0.3s;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 5px rgba(255, 117, 160, 0.3);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .dynamic-list {
+            margin-top: 10px;
+        }
+
+        .list-item {
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #eee;
+            position: relative;
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .add-btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .btn-main {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 117, 160, 0.4);
+        }
+
+        .btn-main:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-preview {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .fb-notice {
+            background: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            border: 1px solid #ffeeba;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Customize Website 💖</h1>
+
+
+
+        <form id="admin-form">
+            <!-- GENERAL -->
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" id="inp-name" placeholder="E.g., Saniya" required>
+            </div>
+            <div class="form-group">
+                <label>Hero Heading</label>
+                <input type="text" id="inp-heading" placeholder="E.g., Babuiii ek chiz dikhau dekhoge aap?" required>
+            </div>
+
+            <!-- AUDIO -->
+            <h2>🎶 Audio Customization</h2>
+            <div class="form-group">
+                <label>Romantic Background Music (Upload File or paste URL)</label>
+                <input type="file" accept="audio/*" id="audio-romantic-file" style="margin-bottom: 10px;">
+                <input type="text" id="inp-audio-romantic"
+                    placeholder="E.g., romantic.mp3 OR https://example.com/song.mp3">
+            </div>
+            <div class="form-group">
+                <label>Birthday Song (Upload File or paste URL)</label>
+                <input type="file" accept="audio/*" id="audio-bday-file" style="margin-bottom: 10px;">
+                <input type="text" id="inp-audio-bday" placeholder="E.g., birthday.mp3 OR https://example.com/song.mp3">
+            </div>
+
+            <!-- TEXTS -->
+            <h2>📝 Texts & Letters</h2>
+            <div class="form-group">
+                <label>Birthday Typing Text</label>
+                <input type="text" id="inp-bday-text" placeholder="Happy Birthday ❤️">
+            </div>
+            <div class="form-group">
+                <label>Love Letter Intro</label>
+                <input type="text" id="inp-letter-intro" placeholder="Happy Birthday meri jaan ❤️">
+            </div>
+            <div class="form-group">
+                <label>Love Letter Content (Use empty line for new paragraph)</label>
+                <textarea id="inp-letter" rows="8"></textarea>
+            </div>
+
+            <!-- GALLERY -->
+            <h2>📸 Image Gallery</h2>
+            <div class="form-group" id="gallery-container">
+                <div class="dynamic-list" id="imgs-list"></div>
+                <button type="button" class="add-btn" onclick="addImgField()">+ Add Image</button>
+            </div>
+
+            <!-- REASONS -->
+            <h2>💕 Reasons I Love You</h2>
+            <div class="form-group" id="reasons-container">
+                <div class="dynamic-list" id="reasons-list"></div>
+                <button type="button" class="add-btn" onclick="addReasonField()">+ Add Reason</button>
+            </div>
+
+            <!-- NO BUTTON -->
+            <h2>🚫 'NO' Button Messages</h2>
+            <div class="form-group">
+                <label>Messages (One per line)</label>
+                <textarea id="inp-no-msgs" rows="5"></textarea>
+            </div>
+
+            <!-- BUTTONS -->
+            <div class="action-btns">
+                <button type="button" class="btn-main" onclick="saveData()">Save Changes 💾</button>
+                <button type="button" class="btn-main btn-preview" onclick="previewWebsite()">Preview Website
+                    👁️</button>
+            </div>
+
+            <!-- SHARE LINK RESULTS (Hidden initially) -->
+            <div id="share-link-box"
+                style="display: none; margin-top: 30px; padding: 20px; background: #fffafc; border-radius: 10px; border: 2px dashed var(--primary); text-align: center;">
+                <h3 style="margin-top:0; color: var(--primary);">Your Shareable Link 🎉</h3>
+                <p style="font-size: 14px; margin-bottom: 15px;">Share this link to show your custom website!</p>
+                <input type="text" id="share-link-display" readonly
+                    style="width: 100%; text-align: center; font-weight: bold; margin-bottom: 20px; padding: 10px; border: 1px solid var(--border); border-radius: 8px;">
+                
+                <h4 style="margin-bottom: 15px; color: var(--secondary);">Share Your Surprise ❤️</h4>
+                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                    <button type="button" class="btn-main" style="padding: 10px 20px; background: #25D366; min-width: 140px; color: white; border: none;" onclick="shareWhatsApp()">
+                        💬 WhatsApp
+                    </button>
+                    <button type="button" class="btn-main" style="padding: 10px 20px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); min-width: 140px; color: white; border: none;" onclick="copyInsta()">
+                        📸 Instagram / Snap
+                    </button>
+                    <button type="button" class="btn-main btn-preview" style="padding: 10px 20px; min-width: 140px;" onclick="copyLink()">
+                        📋 Copy Link
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCO4UywUXpi6nAgUcs7zRCXOGzAVSpe88o",
+            authDomain: "birthday-website-fc974.firebaseapp.com",
+            databaseURL: "https://birthday-website-fc974-default-rtdb.firebaseio.com",
+            projectId: "birthday-website-fc974",
+            storageBucket: "birthday-website-fc974.firebasestorage.app",
+            messagingSenderId: "343976486142",
+            appId: "1:343976486142:web:a980a2cab267e8ce2671af"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        // Defulat Data fallback exactly like script.js
+        const defaultData = {
+            name: "Saniya",
+            heroHeading: "Babuiii ek chiz dikhau dekhoge aap?",
+            romanticAudio: "romantic.mp3",
+            birthdayAudio: "birthday.mp3",
+            birthdayText: "Happy Birthday ❤️",
+            letter: "Pata hai, kabhi kabhi lagta hai life kitni simple thi… phir tum aaye aur sab kuch special ban gaya. Tum sirf ek insaan nahi ho mere liye… tum meri aadat ban gaye ho, meri smile ka reason ho, aur mera safe place bhi.\n\nMere babuu… jab bhi tum mujhe hasate ho na, lagta hai duniya ki saari tension khatam ho gayi. Aur mera cute sa babuii, tumhari choti choti baatein hi meri sabse badi khushi hain.\n\nMere januu, tumhare bina sab adhura lagta hai… sach me. Aur haan, mera pyara sa baccha, tum khud nahi jaante kitne special ho mere liye.\n\nI love you… hamesha ❤️",
+            images: [
+                { src: "pic1.jpg", caption: "My favorite moment with you ❤️", isFavorite: true },
+                { src: "pic2.jpg", caption: "Our first memory ❤️", isFavorite: false },
+                { src: "pic3.jpg", caption: "You + Me = Forever 💕", isFavorite: false }
+            ],
+            reasons: [
+                { front: "Your smile 😊", back: "Because it makes even my worst days feel like a dream.", special: false },
+                { front: "Your anger 😂", back: "Even when you're 'angry', you look the absolute cutest.", special: false },
+                { front: "The way you care", back: "You look after me in ways I didn't even know I needed.", special: false },
+                { front: "Because you are YOU ❤️", back: "I love you... simply because there's no one else like you.", special: true }
+            ],
+            noButtonMessages: ["Nhi dekhoge aap?", "Gandi baat 😒", "YES Click kro n!", "Motuuu plz 😂", "nhi kr rhe aap click", "chalo fir pakad ke dikhao"],
+            letterIntro: "Happy Birthday meri jaan ❤️",
+            vowText: "No matter what...<br />I’ll always choose you ❤️"
+        };
+
+        let currentData = JSON.parse(localStorage.getItem("romanticData")) || defaultData;
+
+        function loadData() {
+            document.getElementById('inp-name').value = currentData.name;
+            document.getElementById('inp-heading').value = currentData.heroHeading;
+            document.getElementById('inp-audio-romantic').value = currentData.romanticAudio || "romantic.mp3";
+            document.getElementById('inp-audio-bday').value = currentData.birthdayAudio || "birthday.mp3";
+            document.getElementById('inp-bday-text').value = currentData.birthdayText;
+            document.getElementById('inp-letter-intro').value = currentData.letterIntro;
+
+            let letterStr = Array.isArray(currentData.letter) ? currentData.letter.join('\n\n') : currentData.letter;
+            // Clean out HTML tags from letter for easiest editing
+            document.getElementById('inp-letter').value = letterStr.replace(/<[^>]*>?/gm, '');
+
+            document.getElementById('inp-no-msgs').value = currentData.noButtonMessages.join('\n');
+
+            // Render Lists
+            document.getElementById('imgs-list').innerHTML = '';
+            currentData.images.forEach(img => addImgField(img));
+
+            document.getElementById('reasons-list').innerHTML = '';
+            currentData.reasons.forEach(r => addReasonField(r));
+        }
+
+        function addImgField(data = { src: '', caption: '', isFavorite: false }) {
+            const wrap = document.createElement('div');
+            wrap.className = 'list-item img-item';
+            wrap.innerHTML = `
+                <button class="remove-btn" onclick="this.parentElement.remove()">X</button>
+                <label>Image (Upload or paste URL)</label>
+                <input type="file" accept="image/*" class="img-file" style="margin-bottom: 5px; width: 100%;">
+                <input type="text" class="img-src" value="${data.src}" placeholder="Or paste image URL" style="margin-bottom:10px;">
+                <img class="img-preview" src="${data.src}" style="width:100px; display: ${data.src ? 'block' : 'none'}; margin-top:10px; border-radius: 8px; margin-bottom: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
+                <label>Caption</label>
+                <input type="text" class="img-cap" value="${data.caption}" placeholder="Caption here">
+                <label style="margin-top:10px; display:flex; align-items:center; gap:10px; font-weight:normal;">
+                    <input type="checkbox" class="img-fav" ${data.isFavorite ? 'checked' : ''}> Make Favorite (Highlight Border)
+                </label>
+            `;
+            document.getElementById('imgs-list').appendChild(wrap);
+        }
+
+        document.addEventListener("change", function(e) {
+            if (e.target.classList.contains("img-file")) {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+
+                reader.onload = function(event) {
+                    const base64 = event.target.result;
+                    const parent = e.target.closest(".img-item");
+                    parent.querySelector(".img-src").value = base64;
+                    const preview = parent.querySelector(".img-preview");
+                    preview.src = base64;
+                    preview.style.display = 'block';
+                };
+
+                if (file) reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById("audio-romantic-file").addEventListener("change", function(e) {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                const base64 = event.target.result;
+                document.getElementById("inp-audio-romantic").value = base64;
+            };
+
+            if (file) reader.readAsDataURL(file);
+        });
+
+        document.getElementById("audio-bday-file").addEventListener("change", function(e) {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                const base64 = event.target.result;
+                document.getElementById("inp-audio-bday").value = base64;
+            };
+
+            if (file) reader.readAsDataURL(file);
+        });
+
+        function addReasonField(data = { front: '', back: '', special: false }) {
+            const wrap = document.createElement('div');
+            wrap.className = 'list-item reason-item';
+            wrap.innerHTML = `
+                <button class="remove-btn" onclick="this.parentElement.remove()">X</button>
+                <label>Front Text</label>
+                <input type="text" class="rsn-front" value="${data.front}" style="margin-bottom:10px;">
+                <label>Back Text</label>
+                <textarea class="rsn-back" rows="2">${data.back}</textarea>
+                <label style="margin-top:10px; display:flex; align-items:center; gap:10px; font-weight:normal;">
+                    <input type="checkbox" class="rsn-spec" ${data.special ? 'checked' : ''}> Special Reason (Pink Grid)
+                </label>
+            `;
+            document.getElementById('reasons-list').appendChild(wrap);
+        }
+
+        function saveData() {
+            const data = {};
+            data.name = document.getElementById('inp-name').value;
+            data.heroHeading = document.getElementById('inp-heading').value;
+            data.romanticAudio = document.getElementById('inp-audio-romantic').value;
+            data.birthdayAudio = document.getElementById('inp-audio-bday').value;
+            data.birthdayText = document.getElementById('inp-bday-text').value;
+            data.letterIntro = document.getElementById('inp-letter-intro').value;
+
+            // Format letter paragraphs
+            const letterRaw = document.getElementById('inp-letter').value;
+            data.letter = letterRaw.split('\n\n').filter(p => p.trim() !== '');
+
+            data.noButtonMessages = document.getElementById('inp-no-msgs').value.split('\n').filter(m => m.trim() !== '');
+            data.vowText = defaultData.vowText; // hidden from admin to protect complex html logic, but can be added
+
+            // Images
+            data.images = Array.from(document.querySelectorAll('.img-item')).map(item => ({
+                src: item.querySelector('.img-src').value,
+                caption: item.querySelector('.img-cap').value,
+                isFavorite: item.querySelector('.img-fav').checked
+            }));
+
+            // Reasons
+            data.reasons = Array.from(document.querySelectorAll('.reason-item')).map(item => ({
+                front: item.querySelector('.rsn-front').value,
+                back: item.querySelector('.rsn-back').value,
+                special: item.querySelector('.rsn-spec').checked
+            }));
+
+            // Generated Unique ID
+            const uniqueId = Math.random().toString(36).substring(2, 10);
+
+            // Save to standard romanticData locally as draft
+            localStorage.setItem("romanticData", JSON.stringify(data));
+
+            // Save to Firebase
+            db.ref("websites/" + uniqueId).set(data).then(() => {
+                // Generate shareable link
+                const link = "index.html?id=" + uniqueId;
+                const currentUrl = window.location.href;
+                const baseUrl = currentUrl.replace('admin.html', '').split('?')[0];
+                const shareableLink = baseUrl + link;
+
+                document.getElementById('share-link-display').value = shareableLink;
+                document.getElementById('share-link-box').style.display = 'block';
+
+                alert("Data uploaded to Firebase globally! 🌐 Your true shareable link is generated.");
+            }).catch(error => {
+                console.error("Firebase save failed", error);
+                alert("Error saving to Firebase! Check your config or internet connection.");
+            });
+        }
+
+        function copyLink() {
+            const linkDisplay = document.getElementById('share-link-display');
+            navigator.clipboard.writeText(linkDisplay.value).then(() => {
+                alert("Link copied to clipboard! 📋");
+            });
+        }
+
+        function shareWhatsApp() {
+            const link = document.getElementById('share-link-display').value;
+            window.open(`https://wa.me/?text=I made something special for you! ❤️ %0A${encodeURIComponent(link)}`, '_blank');
+        }
+
+        function copyInsta() {
+            copyLink();
+            alert("Link copied! Now paste it in your Instagram or Snapchat story/DM ❤️");
+        }
+
+        function previewWebsite() {
+            const linkDisplay = document.getElementById('share-link-display').value;
+            if (linkDisplay) {
+                window.open(linkDisplay, '_blank');
+            } else {
+                window.open('index.html', '_blank');
+            }
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', loadData);
+
+        if (typeof firebase === "undefined") {
+            console.error("Firebase not loaded");
+        }
+    </script>
+
+   
+
+
+</body>
+
+</html>

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>For You | The Full Experience</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+
+
+</head>
+
+<body>
+  <!-- Dynamically loaded audio sources via JS -->
+  <audio id="romantic-audio" loop></audio>
+  <audio id="birthday-song" loop></audio>
+
+  <div class="bg-canvas"></div>
+  <div id="hearts-layer"></div>
+  <div id="balloon-container"></div>
+  <div id="sparkle-container"></div>
+
+  <main class="wrapper" id="landing-screen">
+    <h1 class="heading" id="hero-heading">Loading...</h1>
+    <div class="btn-container">
+      <button class="btn btn-yes" id="yes-btn" onclick="startLoading()" style="display: none;">YES</button>
+      <button class="btn btn-no" id="no-btn" style="display: none;">NO</button>
+    </div>
+  </main>
+
+  <div id="loading-screen">
+    <h2 class="loading-text" style="color: var(--accent-text)">
+      Preparing your surprise… ❤️
+    </h2>
+  </div>
+
+  <section id="final-surprise" class="wrapper">
+    <div id="typing-container" class="typing-box">
+      <span id="typed-text"></span><span class="cursor"></span>
+    </div>
+    <div id="cake-container" class="cake-wrapper">
+      <div class="layer layer-bottom"></div>
+      <div class="layer layer-top"></div>
+      <div class="icing"></div>
+      <div id="candles-group"></div>
+    </div>
+    <div id="action-container" style="display: none; margin-top: 30px; opacity: 0; transition: 1s">
+      <button class="btn btn-yes" onclick="blowCandles()">
+        Blow Candles 🎂
+      </button>
+    </div>
+  </section>
+
+  <div id="letter-entry" class="entry-overlay">
+    <p style="color: var(--accent-text); font-size: 1.5rem">
+      Tap to continue… 💌
+    </p>
+  </div>
+
+  <section id="love-letter-section" class="letter-wrapper">
+    <div class="letter-container">
+      <h2 class="heading" style="font-size: 2.5rem; text-align: center">
+        A Letter Just For You… 💌
+      </h2>
+      <p id="letter-line1" style="
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--accent-text);
+          "></p>
+      <div id="scroll-content">
+        <!-- Dynamically populated paragraphs -->
+      </div>
+    </div>
+  </section>
+
+  <section id="memories-section">
+    <div style="text-align: center">
+      <h2 class="gallery-title" style="
+            font-family: &quot;Parisienne&quot;;
+            font-size: 3rem;
+            color: #ff99cc;
+          ">
+        Our Beautiful Memories
+      </h2>
+      <p style="color: #b3a2c7">Every moment with you is a treasure.</p>
+    </div>
+    <div class="gallery-grid" id="gallery-grid">
+      <!-- Dynamically populated from JS -->
+    </div>
+    <div style="text-align: center; padding: 50px">
+      <button class="btn btn-yes" onclick="showReasons()">
+        Next Surprise ✨
+      </button>
+    </div>
+  </section>
+
+  <section id="reasons-section" style="
+        display: none;
+        padding: 80px 20px;
+        background: #fffafc;
+        min-height: 100vh;
+      ">
+    <div style="text-align: center; margin-bottom: 50px">
+      <h2 class="heading" style="color: #b03060; font-size: 3rem">
+        Reasons I Love You ❤️
+      </h2>
+      <p style="color: #a389f4; font-family: &quot;Poppins&quot;, sans-serif">
+        Tap each card to see why...
+      </p>
+    </div>
+    <div class="reasons-grid" id="reasons-grid"></div>
+
+    <div id="final-text" style="
+          opacity: 0;
+          text-align: center;
+          margin-top: 60px;
+          padding-bottom: 20px;
+          transition: 2s;
+        ">
+      <h3 style="
+            font-family: &quot;Parisienne&quot;, cursive;
+            font-size: 2.5rem;
+            color: #ff75a0;
+            ">
+        And these are just a few… <br />
+        I could go on forever ❤️
+      </h3>
+    </div>
+
+    <!-- "Unlock My Heart" -->
+    <section id="umh-extension" class="umh-section-wrapper" style="padding-bottom: 0px">
+      <div class="umh-hold-container">
+        <svg class="umh-progress-ring" width="160" height="160">
+          <circle id="umh-ring-circle" stroke="#ff75a0" stroke-width="8" fill="transparent" r="70" cx="80" cy="80" />
+        </svg>
+        <button id="umh-main-btn" class="umh-btn-premium">
+          Unlock My Heart 💜
+        </button>
+      </div>
+      <p id="umh-status-text" class="umh-instruction">
+        Press and hold to reveal a secret...
+      </p>
+    </section>
+
+    <div id="umh-secret-overlay" class="umh-overlay">
+      <div class="umh-content-box">
+        <div id="umh-message-sequence" class="umh-text-display"></div>
+
+        <div id="umh-interaction-ui" class="umh-interaction-group">
+          <p style="
+                width: 100%;
+                margin-bottom: 15px;
+                color: #b03060;
+                font-size: large;
+                font-family: &quot;Poppins&quot;;">
+            Did this make you...
+          </p>
+          <button class="umh-react-btn" onclick="umhReact('smile')">
+            Smile? 😊
+          </button>
+          <button class="umh-react-btn" onclick="umhReact('cry')">
+            Cry a little? 😭
+          </button>
+        </div>
+
+        <div id="umh-final-vow" class="umh-vow-text"></div>
+
+        <button id="umh-replay-btn" style="
+              display: none;
+              background: none;
+              border: none;
+              color: #a389f4;
+              text-decoration: underline;
+              cursor: pointer;
+              margin-top: 30px;
+            " onclick="umhResetSequence()">
+          Read it again 💌
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
