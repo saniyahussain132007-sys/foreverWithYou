@@ -69,7 +69,7 @@ export default function AdminPanel() {
   const saveData = async () => {
     try {
       const uniqueId = Math.random().toString(36).substring(2, 10);
-      
+
       // Save locally as draft
       localStorage.setItem("romanticData", JSON.stringify(formData));
 
@@ -77,7 +77,7 @@ export default function AdminPanel() {
       await db.ref("websites/" + uniqueId).set(formData);
 
       const link = window.location.origin + "/?id=" + uniqueId;
-      
+
       setShareLink(link);
       setShowShareBox(true);
       alert("Data uploaded to Firebase globally! 🌐 Your true shareable link is generated.");
@@ -135,10 +135,10 @@ export default function AdminPanel() {
           </div>
           <div className="form-group">
             <label>Love Letter Content (Use empty line for new paragraph)</label>
-            <textarea 
-              value={Array.isArray(formData.letter) ? formData.letter.join('\n\n') : formData.letter} 
+            <textarea
+              value={Array.isArray(formData.letter) ? formData.letter.join('\n\n') : formData.letter}
               onChange={(e) => handleChange('letter', e.target.value.split('\n\n'))}
-              rows="8" 
+              rows="8"
               style={{ width: '100%', padding: '12px', borderRadius: '10px', border: '1px solid var(--border)' }}
             ></textarea>
           </div>
@@ -190,10 +190,10 @@ export default function AdminPanel() {
           <h2 style={{ color: 'var(--primary)', textAlign: 'center' }}>🚫 'NO' Button Messages</h2>
           <div className="form-group">
             <label>Messages (One per line)</label>
-            <textarea 
-              value={formData.noButtonMessages.join('\n')} 
+            <textarea
+              value={formData.noButtonMessages.join('\n')}
               onChange={(e) => handleChange('noButtonMessages', e.target.value.split('\n'))}
-              rows="5" 
+              rows="5"
               style={{ width: '100%', padding: '12px', borderRadius: '10px', border: '1px solid var(--border)' }}
             ></textarea>
           </div>
@@ -202,7 +202,7 @@ export default function AdminPanel() {
             <button type="button" className="btn-main" onClick={saveData}>Save Changes 💾</button>
             <button type="button" className="btn-main btn-preview" onClick={() => {
               localStorage.setItem("romanticData", JSON.stringify(formData));
-              window.open('/preview', '_blank');
+              window.open(window.location.origin + "/preview", "_blank");
             }}>Preview Website 👁️</button>
           </div>
 
@@ -211,7 +211,7 @@ export default function AdminPanel() {
               <h3 style={{ marginTop: 0, color: 'var(--primary)' }}>Your Shareable Link 🎉</h3>
               <p style={{ fontSize: '14px', marginBottom: '15px' }}>Share this link to show your custom website!</p>
               <input type="text" value={shareLink} readOnly style={{ width: '100%', textAlign: 'center', fontWeight: 'bold', marginBottom: '20px', padding: '10px', border: '1px solid var(--border)', borderRadius: '8px' }} />
-              
+
               <h4 style={{ marginBottom: '15px', color: 'var(--secondary)' }}>Share Your Surprise ❤️</h4>
               <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap' }}>
                 <button type="button" className="btn-main" style={{ padding: '10px 20px', background: '#25D366', minWidth: '140px', border: 'none' }} onClick={shareWhatsApp}>
