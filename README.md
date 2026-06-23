@@ -21,7 +21,7 @@ A beautiful and interactive birthday website built with React to create unforget
 
 ## 🚀 Live Demo
 
-https://forever-with-9at48kneq-saniya5.vercel.app/
+https://forever-with-you-lilac.vercel.app/
 
 ## ❤️ About
 
